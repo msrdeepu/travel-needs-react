@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 
-const submitHandler = (e) => {
-  e.preventDefault();
-  console.log(e.target.value);
-};
-
 const Addform = () => {
   const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(1);
+  const [items, setItems] = useState([]);
+
+  const handleNewItem = (item) => {
+    setItems((items) => [...items, item]);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!description) return;
+    // console.log(e.target.value);
+    const newItem = { description, quantity, packed: false, id: Date.now() };
+    console.log(newItem);
+    handleNewItem(newItem);
+    setDescription("");
+    setQuantity(1);
+  };
 
   return (
     <form className="add-form" onSubmit={submitHandler}>
