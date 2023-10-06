@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 
-const Addform = () => {
+const Addform = ({ onAddItems }) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [items, setItems] = useState([]);
-
-  const handleNewItem = (item) => {
-    setItems((items) => [...items, item]);
-  };
+  // const [items, setItems] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,7 +11,7 @@ const Addform = () => {
     // console.log(e.target.value);
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
-    handleNewItem(newItem);
+    onAddItems(newItem);
     setDescription("");
     setQuantity(1);
   };

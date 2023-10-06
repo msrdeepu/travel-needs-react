@@ -1,14 +1,20 @@
+import React, { useState } from "react";
 import Topbar from "./components/Topbar";
 import Footer from "./components/Footer";
 import Packinglist from "./components/Packinglist";
 import Addform from "./components/Addform";
 
 function App() {
+  const [items, setItems] = useState([]);
+  const handleNewItem = (item) => {
+    setItems((items) => [...items, item]);
+  };
+
   return (
     <div>
       <Topbar />
-      <Addform />
-      <Packinglist />
+      <Addform onAddItems={handleNewItem} />
+      <Packinglist items={items} />
       <Footer />
     </div>
   );
