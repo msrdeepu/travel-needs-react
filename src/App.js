@@ -10,11 +10,15 @@ function App() {
     setItems((items) => [...items, item]);
   };
 
+  const deleteHandler = (id) => {
+    setItems((items) => items.filter((item) => item.id !== id));
+  };
+
   return (
     <div>
       <Topbar />
       <Addform onAddItems={handleNewItem} />
-      <Packinglist items={items} />
+      <Packinglist items={items} onDeleteItem={deleteHandler} />
       <Footer />
     </div>
   );
