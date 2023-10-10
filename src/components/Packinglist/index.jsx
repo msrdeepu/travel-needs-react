@@ -1,9 +1,14 @@
 import React from "react";
 import "../../index.css";
 
-const Item = ({ item, onDeleteItem }) => {
+const Item = ({ item, onDeleteItem, onToggleItems }) => {
   return (
     <li>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => onToggleItems(item.id)}
+      />
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
@@ -12,11 +17,16 @@ const Item = ({ item, onDeleteItem }) => {
   );
 };
 
-const Packinglist = ({ items, onDeleteItem }) => {
+const Packinglist = ({ items, onDeleteItem, onToggleItems }) => {
   return (
     <ul className="list">
       {items.map((item) => (
-        <Item item={item} onDeleteItem={onDeleteItem} key={item.id} />
+        <Item
+          item={item}
+          onDeleteItem={onDeleteItem}
+          key={item.id}
+          onToggleItems={onToggleItems}
+        />
       ))}
     </ul>
   );
