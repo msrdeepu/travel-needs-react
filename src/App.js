@@ -18,6 +18,7 @@ function App() {
     );
   };
 
+  let itemsLength = items.length;
   const deleteHandler = (id) => {
     setItems((items) => items.filter((item) => item.id !== id));
   };
@@ -31,7 +32,7 @@ function App() {
         onDeleteItem={deleteHandler}
         onToggleItems={handleToggle}
       />
-      <Footer />
+      <Footer itemsCount={itemsLength} />
     </div>
   );
 }
